@@ -2,8 +2,38 @@
 <html>
 <head>
     <title>Amanda &amp; Daniel</title>
+
+    <style type="text/css">
+        body {
+            font-family: 'comic sans ms', sans-serif;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+    </style>
 </head>
 <body>
-    <h1>A Blond and a Bun</h1>
+    <h1>a blond and a bun</h1>
+    <img id="forest" src="/img/forest-sit-1.png">
+
+    <script type="text/javascript">
+        const forest = document.getElementById('forest');
+
+        const randomizeForest = () => {
+            forest.src = `/img/forest-sit-${randomInt(1, 5)}.png`;
+            setTimeout(randomizeForest, randomInt(500, 1500));
+        };
+        setTimeout(randomizeForest, 1000);
+
+        function randomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+        }
+
+
+    </script>
 </body>
 </html>

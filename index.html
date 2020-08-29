@@ -8,20 +8,75 @@
     <style type="text/css">
         body {
             font-family: 'comic sans ms', sans-serif;
+        }
+
+        #old-school {
+
+        }
+
+        #less-fanciful {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 9999;
+        }
+
+        #fancy {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             flex-flow: column nowrap;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            background: linear-gradient(0deg, rgba(154,208,226,1) 0%, rgba(10,144,255,1) 100%);
+        }
+        #sea {
+            position: absolute;
+            top: 25%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: 
+                repeat url(/img/waves.png),
+                linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+            z-index: -1;
         }
     </style>
 </head>
 <body>
-    <h1>a blond and a bun</h1>
-    <img id="forest" src="/img/forest-sit-1.png">
+    
+    <div id="old-school">
+        <h1>a blond and a bun</h1>
+    </div>
+
+    <div id="fancy">
+        <button id="less-fanciful"
+            onclick="document.getElementById('fancy').style.display = 'none'"
+        >
+            less fanciful, please
+        </button>
+        <div id="sea"></div>
+        <img id="forest" src="/img/forest-sit-1.png">
+    </div>
 
     <script type="text/javascript">
-        const forest = document.getElementById('forest');
+        const id = (id) => document.getElementById(id);
+
+        const forest = id('forest');
+        const sea = id('sea');
+
+        const randomizeWaves = () => {
+            let x = parseInt(sea.style.backgroundPositionX) || 0;
+            let y = parseInt(sea.style.backgroundPositionY) || 0;
+            x = (x + randomInt(50, 200)) % 256;
+            y = (y + randomInt(50, 200)) % 256;
+            sea.style.backgroundPositionX = `${x}px, 0`;
+            sea.style.backgroundPositionY = `${y}px, 0`;
+        };
+        setInterval(randomizeWaves, 2000);
 
         const randomizeForest = () => {
             forest.src = `/img/forest-sit-${randomInt(1, 5)}.png`;

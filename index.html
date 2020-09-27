@@ -79,24 +79,30 @@
         #scene {
             width: 800px;
             height: 600px;
-            /*outline: 1px dashed red;*/
+            outline: 1px dashed red;
             position: relative;
             flex-shrink: 0;
         }
         #scene > * {
             position: absolute;
         }
-        #forest {
-            left: 360px;
-            top: 270px;
+        #scene .character {
+            z-index: 1;
+            background-size: cover;
+            width: 64px;
+            height: 64px;
+            transition:
+                top 50ms linear,
+                left 50ms linear,
+                transform 200ms ease-in-out;
         }
         #island {
-            left: calc(50% - 120px);
-            top: calc(50% - 70px);
+            left: 280px;
+            top: 230px;
         }
         #signpost {
-            left: calc(50% - 150px);
-            top: calc(50% - 300px);
+            left: 250px;
+            top: 0;
         }
         #bridge-sf {
             top: 0;
@@ -140,21 +146,21 @@
             <img id="bridge-pgh" src="/img/bridge-pgh.png">
             <img id="bridge-tokyo" src="/img/bridge-tokyo.png">
             <img id="signpost" src="/img/signpost.png" usemap="#signpost-map">
-            <img id="forest" src="/img/forest-sit-1.png">
 
             <map name="signpost-map">
-                <area alt="Event Info" title="Event Info" href="/info.html" coords="144,78 283,3 336,3 311,52 174,129 174,129 " shape="polygon">
-                <area alt="About Us" title="About Us" href="/about.html" coords="3,60 55,53 187,113 164,160 28,104 " shape="polygon">
-                <area alt="RSVP" title="RSVP" href="/rsvp.html" coords="285,203 274,159 168,98 141,148 243,209 " shape="polygon">
-                <area alt="Registry" title="Registry" href="/registry.html" coords="35,220 60,177 176,136 195,186 79,237 " shape="polygon">
+                <area class="js-go-to-info" alt="Event Info" title="Event Info" href="/info.html" coords="144,78 283,3 336,3 311,52 174,129 174,129 " shape="polygon">
+                <area class="js-go-to-about" alt="About Us" title="About Us" href="/about.html" coords="3,60 55,53 187,113 164,160 28,104 " shape="polygon">
+                <area class="js-go-to-rsvp" alt="RSVP" title="RSVP" href="/rsvp.html" coords="285,203 274,159 168,98 141,148 243,209 " shape="polygon">
+                <area class="js-go-to-registry" alt="Registry" title="Registry" href="/registry.html" coords="35,220 60,177 176,136 195,186 79,237 " shape="polygon">
             </map>
         </div>
     </div>
 
     <script type="text/javascript">
         const id = (id) => document.getElementById(id);
+        const cl = (cl) => document.body.querySelectorAll(cl);
 
-        const forest = id('forest');
+        const scene = id('scene');
         const sea = id('sea');
 
         const randomizeWaves = () => {
@@ -167,16 +173,103 @@
         };
         setInterval(randomizeWaves, 2000);
 
-        const randomizeForest = () => {
-            forest.src = `/img/forest-sit-${randomInt(1, 5)}.png`;
-            setTimeout(randomizeForest, randomInt(500, 1500));
-        };
-        setTimeout(randomizeForest, 1000);
+        class Character {
+            constructor(imgBase) {
+                this.imgBase = imgBase;
+                this.node = document.createElement('div');
+                this.node.classList.add('character');
+                this.moveTo(380, 280);
+                scene.appendChild(this.node);
+                this.sit();
+            }
+
+            get x() {
+                return parseInt(this.node.style.left) + 32;
+            }
+            get y() {
+                return parseInt(this.node.style.top) + 32;
+            }
+
+            moveTo(x, y) {
+                this.node.style.left = (x - 32) + 'px';
+                this.node.style.top = (y - 32) + 'px';
+            }
+
+            moveBy(dx, dy) {
+                this.moveTo(this.x + dx, this.y + dy);
+            }
+
+            stopAnimations() {
+                if (this.sitRandomizeTimeout) {
+                    clearTimeout(this.sitRandomizeTimeout);
+                }
+                if (this.walkInterval) {
+                    clearInterval(this.walkInterval);
+                }
+            }
+
+            sit() {
+                this.stopAnimations();
+                this.node.style.transform = 'scale(2)';
+                const tick = () => {
+                    this.node.style.backgroundImage = `url(/img/${this.imgBase}-sit-${randomInt(1, 5)}.png)`;
+                    this.sitRandomizeTimeout = setTimeout(tick, randomInt(500, 1500));
+                };
+                tick();
+            }
+
+            walkTo(x, y) {
+                this.stopAnimations();
+                let dir;
+                if (x < this.x) {
+                    this.node.style.transform = 'none';
+                    dir = 'left';
+                } else {
+                    this.node.style.transform = 'scale(-1, 1)';
+                    dir = 'right';
+                }
+                const xStep = dir === 'left' ? -10 : 10;
+                const steps = Math.floor(Math.abs((x - this.x) / xStep));
+                const yStep = (y - this.y) / steps;
+                const tick = () => {
+                    if (dir === 'left' && this.x <= x ||
+                        dir === 'right' && this.x >= x) {
+                        this.sit();
+                    } else {
+                        this.moveBy(xStep, yStep);
+                    }
+                };
+                this.walkInterval = setInterval(tick, 200);
+            }
+        }
 
         function randomInt(min, max) {
             min = Math.ceil(min);
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+        }
+
+        // Characters
+        const forest = new Character('forest');
+
+        const AREAS = {
+            info: {x: 832, y: 52},
+            rsvp: {x: 832, y: 482},
+            about: {x: -18, y: 82},
+            registry: {x: 12, y: 482},
+        };
+        Object.keys(AREAS).forEach(area => {
+            cl(`.js-go-to-${area}`).forEach(el => {
+                el.addEventListener('click', goTo(area))
+            });
+        });
+
+        function goTo(area) {
+            return event => {
+                event.preventDefault();
+                const endXY = AREAS[area];
+                forest.walkTo(endXY.x, endXY.y);
+            };
         }
 
 

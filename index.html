@@ -131,6 +131,18 @@
                 transform 200ms ease-in-out,
                 background-image 100ms;
         }
+        #scene .character.teleporting {
+            transition:
+                top 700ms ease-out,
+                left 700ms ease-out,
+                transform 700ms ease-out,
+                background-image 700ms ease-out;
+            animation: 700ms spin ease-out;
+        }
+        @keyframes spin {
+            from { transform: rotate(259deg); }
+            to { transform: none; }
+        }
         #island {
             left: calc(50% - 120px);
             top: 230px;
@@ -289,11 +301,14 @@
         //setInterval(randomizeWaves, 2000);
 
         class Character {
-            constructor(imgBase) {
+            constructor(imgBase, homeX, homeY) {
                 this.imgBase = imgBase;
+                this.homeX = homeX;
+                this.homeY = homeY;
+
                 this.node = document.createElement('div');
                 this.node.classList.add('character');
-                this.moveTo(460, 250);
+                this.moveTo(homeX, homeY);
                 scene.appendChild(this.node);
                 this.sit();
             }
@@ -309,6 +324,9 @@
             }
             get walking() {
                 return this.state === 'walking';
+            }
+            get teleporting() {
+                return this.state === 'teleporting';
             }
 
             moveTo(x, y) {
@@ -381,10 +399,29 @@
                     this.walkInterval = setInterval(tick, 300);
                 });
             }
+
+            teleportTo(x, y) {
+                this.state = 'teleporting';
+                this.stopAnimations();
+                this.node.classList.add('teleporting');
+                if (x === undefined) this.moveTo(this.homeX, this.homeY);
+                else this.moveTo(x, y);
+                return new Promise(resolve => {
+                    const onEnd = () => {
+                        this.node.classList.remove('teleporting');
+                        this.node.removeEventListener('animationend', onEnd);
+                        this.sit();
+                        resolve();
+                    };
+                    this.node.addEventListener('animationend', onEnd);
+                });
+            }
         }
 
         class Popup {
-            constructor(page) {
+            constructor(page, onClose) {
+                this.onClose = onClose;
+
                 this.node = document.createElement('div');
                 this.node.classList.add('popup');
                 this.node.classList.add('animate-in');
@@ -412,6 +449,7 @@
                     this.node.addEventListener('transitionend', () => {
                         if (this.node.parentNode) {
                             document.body.removeChild(this.node)
+                            this.onClose();
                         }
                     });
                 }
@@ -425,7 +463,7 @@
         }
 
         // Characters
-        const forest = new Character('forest');
+        const forest = new Character('forest', 460, 250);
 
         const AREAS = {
             info: {x: 880, y: 20},
@@ -443,11 +481,16 @@
             return async event => {
                 event.preventDefault();
                 const endXY = AREAS[area];
-                await forest.walkTo(endXY.x, endXY.y);
-                new Popup(area);
+                if (forest.sitting) {
+                    await forest.walkTo(endXY.x, endXY.y);
+                } else if (forest.walking) {
+                    await forest.teleportTo(endXY.x, endXY.y);
+                } else {
+                    return;
+                }
+                new Popup(area, () => forest.teleportTo());
             };
         }
-
 
     </script>
 </body>

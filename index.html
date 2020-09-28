@@ -193,16 +193,16 @@
             <div class="waves1"><div class="waves2"></div></div>
         </div>
         <div id="scene">
-            <img id="island" src="/img/island.png">
-            <img id="island-sf" src="/img/island.png">
-            <img id="island-cinci" src="/img/island.png">
-            <img id="island-pgh" src="/img/island.png">
-            <img id="island-tokyo" src="/img/island.png">
-            <img id="bridge-sf" src="/img/bridge-sf.png">
-            <img id="bridge-cinci" src="/img/bridge-cinci.png">
-            <img id="bridge-pgh" src="/img/bridge-pgh.png">
-            <img id="bridge-tokyo" src="/img/bridge-tokyo.png">
-            <img id="signpost" src="/img/signpost.png" usemap="#signpost-map">
+            <img id="island"        src="/img/island.png">
+            <img id="island-sf"     class="js-go-to-about" src="/img/island.png">
+            <img id="island-cinci"  class="js-go-to-info" src="/img/island.png">
+            <img id="island-pgh"    class="js-go-to-rsvp" src="/img/island.png">
+            <img id="island-tokyo"  class="js-go-to-registry" src="/img/island.png">
+            <img id="bridge-sf"     class="js-go-to-about" src="/img/bridge-sf.png">
+            <img id="bridge-cinci"  class="js-go-to-info" src="/img/bridge-cinci.png">
+            <img id="bridge-pgh"    class="js-go-to-rsvp" src="/img/bridge-pgh.png">
+            <img id="bridge-tokyo"  class="js-go-to-registry" src="/img/bridge-tokyo.png">
+            <img id="signpost"      src="/img/signpost.png" usemap="#signpost-map">
 
             <map name="signpost-map">
                 <area class="js-go-to-info" alt="Event Info" title="Event Info" href="/info.html" coords="144,78 283,3 336,3 311,52 174,129 174,129 " shape="polygon">
@@ -330,7 +330,7 @@
         };
         Object.keys(AREAS).forEach(area => {
             cl(`.js-go-to-${area}`).forEach(el => {
-                el.addEventListener('click', goTo(area))
+                el.addEventListener('click', goTo(area));
             });
         });
 

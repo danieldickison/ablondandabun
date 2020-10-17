@@ -24,9 +24,29 @@
             Amanda & Daniel
         </section>
 
-        <section>
-            photos go here
+        <section class="gallery">
+            <a href="/photos/photo-01.jpg" target="photo"><img src="/photos/thumb-01.jpg"></a>
+            <a href="/photos/photo-02.jpg" target="photo"><img src="/photos/thumb-02.jpg"></a>
+            <a href="/photos/photo-03.jpg" target="photo"><img src="/photos/thumb-03.jpg"></a>
+            <a href="/photos/photo-04.jpg" target="photo"><img src="/photos/thumb-04.jpg"></a>
+            <a href="/photos/photo-05.jpg" target="photo"><img src="/photos/thumb-05.jpg"></a>
+            <a href="/photos/photo-06.jpg" target="photo"><img src="/photos/thumb-06.jpg"></a>
+            <a href="/photos/photo-07.jpg" target="photo"><img src="/photos/thumb-07.jpg"></a>
+            <a href="/photos/photo-08.jpg" target="photo"><img src="/photos/thumb-08.jpg"></a>
+            <a href="/photos/photo-09.jpg" target="photo"><img src="/photos/thumb-09.jpg"></a>
+            <a href="/photos/photo-10.jpg" target="photo"><img src="/photos/thumb-10.jpg"></a>
         </section>
+
+        <script>
+            const resizeThumb = img => {
+                img.width = Math.round(img.naturalWidth / 2);
+                img.height = Math.round(img.naturalHeight / 2);
+            };
+            document.querySelectorAll('.gallery img').forEach(img => {
+                if (img.naturalWidth > 0) resizeThumb(img);
+                else img.addEventListener('load', () => resizeThumb(img));
+            })
+        </script>
     </main>
 </body>
 </html>

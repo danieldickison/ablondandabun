@@ -3,15 +3,14 @@
 :root {
     --title-font: 'Hind';
     --body-font: 'Overpass';
+    --navy: rgba(5, 43, 70, 1);
 }
 
 body {
     font-family: var(--body-font), sans-serif;
     line-height: 1.5;
     margin: 0;
-    background: rgba(0, 38, 62, 0.875);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: var(--navy);
 }
 
 h1, h2, h3, h4 {
@@ -84,7 +83,7 @@ dl.faq > dd {
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 38, 62, 0.875);
+    background: var(--navy);
 }
 .gallery > a {
     line-height: 0;

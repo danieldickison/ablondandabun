@@ -24,20 +24,24 @@
             Amanda & Daniel
         </section>
 
-        <section class="gallery">
-            <a href="/photos/photo-01.jpg" target="photo"><img src="/photos/thumb-01.jpg"></a>
-            <a href="/photos/photo-02.jpg" target="photo"><img src="/photos/thumb-02.jpg"></a>
-            <a href="/photos/photo-03.jpg" target="photo"><img src="/photos/thumb-03.jpg"></a>
-            <a href="/photos/photo-04.jpg" target="photo"><img src="/photos/thumb-04.jpg"></a>
-            <a href="/photos/photo-05.jpg" target="photo"><img src="/photos/thumb-05.jpg"></a>
-            <a href="/photos/photo-06.jpg" target="photo"><img src="/photos/thumb-06.jpg"></a>
-            <a href="/photos/photo-07.jpg" target="photo"><img src="/photos/thumb-07.jpg"></a>
-            <a href="/photos/photo-08.jpg" target="photo"><img src="/photos/thumb-08.jpg"></a>
-            <a href="/photos/photo-09.jpg" target="photo"><img src="/photos/thumb-09.jpg"></a>
-            <a href="/photos/photo-10.jpg" target="photo"><img src="/photos/thumb-10.jpg"></a>
+        <section>
+            <div class="gallery">
+                <a href="/photos/photo-01.jpg" target="photo"><img src="/photos/thumb-01.jpg"></a>
+                <a href="/photos/photo-02.jpg" target="photo"><img src="/photos/thumb-02.jpg"></a>
+                <a href="/photos/photo-03.jpg" target="photo"><img src="/photos/thumb-03.jpg"></a>
+                <a href="/photos/photo-04.jpg" target="photo"><img src="/photos/thumb-04.jpg"></a>
+                <a href="/photos/photo-05.jpg" target="photo"><img src="/photos/thumb-05.jpg"></a>
+                <a href="/photos/photo-06.jpg" target="photo"><img src="/photos/thumb-06.jpg"></a>
+                <a href="/photos/photo-07.jpg" target="photo"><img src="/photos/thumb-07.jpg"></a>
+                <a href="/photos/photo-08.jpg" target="photo"><img src="/photos/thumb-08.jpg"></a>
+                <a href="/photos/photo-09.jpg" target="photo"><img src="/photos/thumb-09.jpg"></a>
+                <a href="/photos/photo-10.jpg" target="photo"><img src="/photos/thumb-10.jpg"></a>
+            </div>
+            <p>Photos (the good ones) by <a href="https://www.rachelkunzenphotography.com/blog/2020/3/19/daniel-amanda-allegheny-observatory-in-riverview-park-engagement-photos" target="_blank">Rachel Kunzen</a></p>
         </section>
 
         <script>
+            // Resize thumbs to 50% of natural size for retina display.
             const resizeThumb = img => {
                 img.width = Math.round(img.naturalWidth / 2);
                 img.height = Math.round(img.naturalHeight / 2);

@@ -78,12 +78,20 @@ dl.faq > dd {
     margin: 0 0 2em 0;
 }
 
-.gallery {
+section.gallery {
+    padding: 0;
+    background: var(--navy);
+    color: #bbb;
+}
+section.gallery a {
+    color: #8be;
+}
+
+section.gallery > .gallery {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
-    background: var(--navy);
 }
 .gallery > a {
     line-height: 0;

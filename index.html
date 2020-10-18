@@ -4,9 +4,13 @@
     <title>Amanda &amp; Daniel</title>
     <meta charset="utf-8">
     <meta name="description" content="Wedding information for Amanda and Daniel, October 9, 2021.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=1000">
 
     <style type="text/css">
+        body {
+            min-height: 1000px;
+        }
+
         #less-fanciful {
             position: fixed;
             top: 5px;
@@ -15,22 +19,22 @@
         }
 
         #fancy {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100vw;
-            height: 100vh;
+            height: max(100vh, 1000px);
             display: flex;
             flex-flow: column nowrap;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: flex-start;
             background: linear-gradient(0deg, rgba(154,208,226,1) 0%, rgba(10,144,255,1) 100%);
         }
         #cloud-title {
             position: absolute;
             top: -100px;
             left: calc(50% - 500px);
-            z-index: -2;
+            z-index: 1;
             animation-duration: 3s;
             animation-name: cloud-float-y;
             animation-iteration-count: infinite;
@@ -61,12 +65,12 @@
         #sea {
             position: absolute;
             overflow: hidden;
-            top: 25%;
+            top: max(25%, 200px);
             bottom: 0;
             left: 0;
             right: 0;
             background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-            z-index: -1;
+            z-index: 2;
         }
         #sea .waves1 {
             position: absolute;
@@ -104,17 +108,19 @@
             }
         }
         #scene {
+            top: calc(25% + 20px);
             width: 1000px;
             height: 600px;
-            /*outline: 1px dashed red;*/
+            /*outline: 3px dashed red;*/
             position: relative;
             flex-shrink: 0;
+            z-index: 3;
         }
         #scene > * {
             position: absolute;
         }
         #scene .character {
-            z-index: 1;
+            z-index: 4;
             background-size: cover;
             width: 128px;
             height: 128px;
@@ -179,6 +185,7 @@
 
         .popup {
             position: fixed;
+            z-index: 10;
             top: 0;
             left: 0;
             bottom: 0;
@@ -195,8 +202,8 @@
         .popup > .container {
             position: absolute;
             width: 90%;
-            height: 90%;
-            top: 5%;
+            height: 95%;
+            top: 2.5%;
             left: 5%;
             border: solid 31x rgba(0, 0, 0, 0.5);
             /*border-radius: 10px;*/
@@ -221,22 +228,22 @@
             position: absolute;
             top: -10px;
             right: -10px;
-            width: 20px;
             height: 20px;
-            padding: 0;
+            padding: 0 5px;
             margin: 0;
-            border: solid 2px #333;
+            border: solid 2px #103060;
             border-radius: 10px;
             background: white;
+            color: #103060;
             box-shadow: rgba(0,0,0,0.5) 0 2px 5px;
             cursor: pointer;
-        }
-        .popup .close::before {
-            content: '-';
             font-family: sans-serif;
             font-weight: bold;
             vertical-align: middle;
             text-align: center;
+        }
+        .popup .close::before {
+            content: 'close';
         }
     </style>
 </head>

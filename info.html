@@ -6,6 +6,18 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
     <script async defer data-domain="ablondandabun.com" src="https://plausible.io/js/plausible.js"></script>
+    <style type="text/css">
+        #map {
+            width: 100%;
+            height:  400px;
+        }
+        #map .map-callout {
+            
+        }
+        #map .map-callout h4 {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
     <h1>Wedding Weekend</h1>
@@ -27,7 +39,7 @@
                         <strong>Rhinegeist Brewery</strong>
                     </a>
                     <br>
-                    <a href="http://maps.apple.com/?daddr=1910%20Elm%20St,%20Cincinnati,%20OH%2045202-7751&&near=39.117226,-84.52028" target="_blank">1910 Elm St, Cincinnati, OH 45202, USA</a>
+                    <a href="http://maps.apple.com/?daddr=1910%20Elm%20St,%20Cincinnati,%20OH%2045202-7751&near=39.117226,-84.52028" target="_blank">1910 Elm St, Cincinnati, OH 45202, USA</a>
                     <p>Look for wedding entrance on Elm Street.</p>
                 </dd>
                 <dt>Parking</dt>
@@ -36,6 +48,7 @@
                     Valet will be available to those with vehicles.
                 </dd>
             </dl>
+            <div id="map"></div>
         </section>
 
         <section>
@@ -65,7 +78,7 @@
                 <dt><a href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1613572433693&key=GRP&app=resvlink" target="_blank"><strong>Kinley Cincinnati Downtown</strong></a></dt>
                 <dd>The link will take you to the Downey-Dickison Wedding Block booking page.</dd>
 
-                <dt><a href="http://www.21cmuseumhotels.com/cincinnati/" target="_blank"><strong>21c Museum Hotels</strong></a></dt>
+                <dt><a href="http://www.21cmuseumhotels.com/cincinnati/" target="_blank"><strong>21c Museum Hotel Cincinnati</strong></a></dt>
                 <dd>Click “Book a Room” then enter your dates and “DDWED” as the preference code.</li>
             </dl>
             <p>There are plenty of additional hotels in Northern Kentucky and downtown Cincinnati.</p>
@@ -88,5 +101,79 @@
             </dl>
         </section>
     </main>
+
+    <script type="text/javascript">
+        const tokenID = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllHMzk2QVkzVFAifQ.eyJpc3MiOiJNOEtUWDRTNlBBIiwiaWF0IjoxNjE0NTU2OTMyLCJleHAiOjE2NDYwOTI4MDAsIm9yaWdpbiI6Imh0dHBzOi8vYWJsb25kYW5kYWJ1bi5jb20ifQ.1jHW5E4CHLzJ639JbjMo8fXfu6RNAPYvxKWHhwjL_CzU9FRdUqU87R4BWohUSBedIgsagxu4fPBRDNr6ykEPlQ";
+        mapkit.init({
+            authorizationCallback: function(done) {
+                done(tokenID);
+            }
+        });
+        const map = new mapkit.Map("map");
+        const makeLink = (title, url) => {
+            const a = document.createElement('a');
+            a.href = url;
+            a.innerText = title;
+            a.target = '_blank';
+            return a;
+        };
+        const calloutDelegate = {
+            calloutContentForAnnotation: annotation => {
+                const div = document.createElement('div');
+                div.classList.add('map-callout');
+                
+                const title = document.createElement('h4');
+                title.appendChild(makeLink(annotation.data.fullTitle, annotation.data.url));
+                div.appendChild(title);
+
+                div.appendChild(makeLink(annotation.data.address, annotation.data.mapURL));
+
+                return div;
+            }
+        };
+        const annotations = [
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.116853, -84.520045), {
+                title: "Rhinegeist",
+                subtitle: "1910 Elm St, Cincinnati, OH 45202, USA",
+                color: "#ffa53d",
+                glyphText: "🍻",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Rhinegeist Brewery",
+                    url: "https://rhinegeist.com",
+                    address: "1910 Elm St\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=1910%20Elm%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=6204095633216536386&ll=39.116853,-84.520045&lsp=9902&q=Rhinegeist%20Brewery&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhBoCgQIChAAEiYpQQx03mGOQ0Axtk0HQ6chVcA5v+GZOoiPQ0BB7iwakOkgVcBQBA%3D%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.103337, -84.515036), {
+                color: "#f060ea",
+                title: "Kinley",
+                glyphText: "🛏",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Kinley Cincinnati Downtown",
+                    url: "https://www.marriott.com/event-reservations/reservation-link.mi?id=1613572433693&key=GRP&app=resvlink",
+                    address: "636 Race St\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=636%20Race%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=5076714277114001385&ll=39.103337,-84.515036&lsp=9902&q=Kinley%20Cincinnati%20Downtown,%20a%20Tribute%20Portfolio%20Hotel&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhALCgQIChAAEiYpuuh1xqOMQ0AxUPDyWVUhVcA5OL6bIsqNQ0BBxgVnsJcgVcBQBA%3D%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.103082, -84.511972), {
+                color: "#f060ea",
+                title: "21c",
+                glyphText: "🛏",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "21c Musem Hotel Cincinnati",
+                    url: "http://www.21cmuseumhotels.com/cincinnati/",
+                    address: "609 Walnut St\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=609%20Walnut%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=781976975545912129&ll=39.103082,-84.511972&lsp=9902&q=21c%20Museum%20Hotel%20Cincinnati%20-%20MGallery&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhALCgQIChAAEiYpnvXfKqCMQ0AxS7PTkCIhVcA5HMsFh8aNQ0BBezJb52QgVcBQBA%3D%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.055368, -84.656138), {
+                color: "#70e5ef", title: "Cincinnati Airport", glyphText: "✈️"
+            }),
+        ];
+        map.showItems(annotations);
+    </script>
 </body>
 </html>

@@ -66,6 +66,7 @@ dl.wide {
 }
 dl > dt {
     grid-column: 1;
+    font-size: inherit;
 }
 dl > dd {
     grid-column: 2;

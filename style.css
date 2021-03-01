@@ -4,6 +4,15 @@
     --title-font: 'Hind';
     --body-font: 'Overpass';
     --navy: rgba(5, 43, 70, 1);
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+@media screen and (max-width: 1000px) {
+    :root {
+        font-size: 24px;
+    }
 }
 
 body {
@@ -66,7 +75,6 @@ dl.wide {
 }
 dl > dt {
     grid-column: 1;
-    font-size: inherit;
 }
 dl > dd {
     grid-column: 2;

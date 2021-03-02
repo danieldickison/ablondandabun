@@ -4,7 +4,7 @@
     <title>Amanda &amp; Daniel</title>
     <meta charset="utf-8">
     <meta name="description" content="Wedding information for Amanda and Daniel, October 9, 2021.">
-    <meta name="viewport" content="width=1000px">
+    <meta name="viewport" content="width=device-width">
 
     <link rel="preload" as="image" href="/img/forest-sit-1.png">
     <link rel="preload" as="image" href="/img/forest-sit-2.png">
@@ -24,8 +24,8 @@
         #less-fanciful {
             position: fixed;
             top: 5px;
-            left: 5px;
-            z-index: 9999;
+            right: 5px;
+            z-index: 9;
         }
 
         #fancy {
@@ -40,6 +40,7 @@
             justify-content: flex-start;
             background: linear-gradient(0deg, rgba(154,208,226,1) 0%, rgba(10,144,255,1) 100%);
         }
+
         #cloud-title {
             position: absolute;
             top: -100px;
@@ -72,6 +73,7 @@
                 transform: translateX(5px);
             }
         }
+
         #sea {
             position: absolute;
             overflow: hidden;
@@ -254,6 +256,31 @@
         }
         .popup .close::before {
             content: 'close';
+        }
+
+
+        @media screen and (max-width: 600px) {
+            #cloud-title {
+                top:  -10px;
+                left: calc(50% - 250px);
+            }
+            #cloud-title > img {
+                width:  500px;
+            }
+            #fancy {
+                overflow: hidden;
+            }
+            #scene {
+                overflow: hidden;
+                transition: transform 1s;
+            }
+            #scene.zoom-out {
+                transform:  scale(0.4);
+            }
+            .popup > .container {
+                width: 95%;
+                left: 2.5%;
+            }
         }
     </style>
 </head>
@@ -487,7 +514,7 @@
 
         const AREAS = {
             info: {x: 880, y: 20},
-            rsvp: {x: 832, y: 482},
+            rsvp: {x: 832, y: 452},
             about: {x: 40, y: 20},
             registry: {x: 60, y: 470},
         };
@@ -500,6 +527,7 @@
         function goTo(area) {
             return async event => {
                 event.preventDefault();
+                scene.classList.add('zoom-out');
                 const endXY = AREAS[area];
                 if (forest.sitting) {
                     await forest.walkTo(endXY.x, endXY.y);
@@ -508,7 +536,10 @@
                 } else {
                     return;
                 }
-                new Popup(area, () => forest.teleportTo());
+                new Popup(area, () => {
+                    scene.classList.remove('zoom-out');
+                    forest.teleportTo()
+                });
             };
         }
 

@@ -480,29 +480,38 @@
         class Popup {
             constructor(page, onClose) {
                 this.onClose = onClose;
+                const closeHandler = this.close.bind(this);
 
                 this.node = document.createElement('div');
                 this.node.classList.add('popup');
                 this.node.classList.add('animate-in');
                 requestAnimationFrame(() => this.node.classList.remove('animate-in'));
-                this.node.addEventListener('click', () => this.close());
+                this.node.addEventListener('click', closeHandler, {once: true});
                 document.body.appendChild(this.node);
 
-                var container = document.createElement('div');
+                const container = document.createElement('div');
                 container.classList.add('container');
                 this.node.appendChild(container);
 
-                var iframe = document.createElement('iframe');
+                const iframe = document.createElement('iframe');
                 iframe.src = `/${page}.html`;
                 container.appendChild(iframe);
 
-                var close = document.createElement('button');
-                close.classList.add('close');
-                close.addEventListener('click', () => this.close());
-                container.appendChild(close);
+                const closeButton = document.createElement('button');
+                closeButton.classList.add('close');
+                closeButton.addEventListener('click', closeHandler, {once: true});
+                container.appendChild(closeButton);
+
+                window.addEventListener('popstate', closeHandler, {once: true});
+
+                history.pushState(null, page, `#${page}`);
             }
 
-            close() {
+            close(event) {
+                if (event.type !== 'popstate') {
+                    history.back();
+                }
+
                 if (this.node.parentNode && !this.node.classList.contains('animate-out')) {
                     this.node.classList.add('animate-out');
                     this.node.addEventListener('transitionend', () => {
@@ -532,28 +541,52 @@
         };
         Object.keys(AREAS).forEach(area => {
             cl(`.js-go-to-${area}`).forEach(el => {
-                el.addEventListener('click', goTo(area));
+                el.addEventListener('click', makeGoTo(area));
             });
         });
 
-        function goTo(area) {
+        function makeGoTo(area) {
             return async event => {
                 event.preventDefault();
-                scene.classList.add('zoom-out');
-                const endXY = AREAS[area];
-                if (forest.sitting) {
-                    await forest.walkTo(endXY.x, endXY.y);
-                } else if (forest.walking) {
-                    await forest.teleportTo(endXY.x, endXY.y);
-                } else {
-                    return;
-                }
-                new Popup(area, () => {
-                    scene.classList.remove('zoom-out');
-                    forest.teleportTo()
-                });
-            };
+                await goTo(area);
+            }
         }
+
+        async function goTo(area, forceTeleport) {
+            scene.classList.add('zoom-out');
+            const endXY = AREAS[area];
+            if (forest.walking || forceTeleport) {
+                await forest.teleportTo(endXY.x, endXY.y);
+            } else if (forest.sitting) {
+                await forest.walkTo(endXY.x, endXY.y);
+            } else {
+                return;
+            }
+            new Popup(area, () => {
+                scene.classList.remove('zoom-out');
+                forest.teleportTo()
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', event => {
+            const goToHash = hash => {
+                const area = hash.substr(1);
+                if (AREAS[area]) {
+                    // Drop the hash so subsequent back button goes back to plain index.
+                    history.replaceState(null, '', location.pathname);
+                    setTimeout(() => goTo(area, true), 1);
+                } else {
+                    forest.teleportTo();
+                }
+            };
+            window.addEventListener('hashchange', event => {
+                event.preventDefault();
+                goToHash(location.hash);
+            });
+            if (location.hash) {
+                goToHash(location.hash);
+            }
+        });
 
     </script>
 </body>

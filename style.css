@@ -127,6 +127,17 @@ section.gallery > .gallery {
     height:  2000px;
 }
 
+#normal-registry .zola-link {
+    text-align: center;
+    margin: 40px 0;
+}
+#normal-registry .zola-link > a {
+    font-size: larger;
+    border: solid 2px #103060;
+    border-radius: 5px;
+    padding: 5px 20px;
+}
+
 
 /*********** phone ***********/
 

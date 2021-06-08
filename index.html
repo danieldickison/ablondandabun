@@ -484,10 +484,13 @@
 
                 window.addEventListener('popstate', closeHandler, {once: true});
 
-                history.pushState(null, page, `#${page}`);
+                history.pushState(page, page, `#${page}`);
             }
 
             close(event) {
+                event.preventDefault();
+                event.stopPropagation();
+
                 if (event.type !== 'popstate') {
                     history.back();
                 }

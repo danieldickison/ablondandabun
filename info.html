@@ -74,10 +74,20 @@
             </dl>
         </section>
 
-        <section>
-            <h2>Flying</h2>
+        <section id="travel">
+            <h2>Travel</h2>
+
+            <h3>Flying</h3>
             <p>
                 We recommend flying into <a href="https://www.cvgairport.com/" target="_blank">Cincinnati Northern Kentucky International Airport (CVG)</a>, which, confusingly, is in Kentucky. From CVG, you can rent a car or take Lyft/Uber.
+            </p>
+
+            <h3>In Cincinnati</h3>
+            <p>
+                There is a <a href="https://www.cincinnati-oh.gov/streetcar/" target="_blank"><strong>free streetcar</strong></a> that runs from Fountain Square near the hotels to Rhinegeist Brewery.
+            </p>
+            <p>
+                Alternatively, <a href="https://www.lyft.com" target="_blank"><strong>Lyft</strong></a> and <a href="https://www.uber.com" target="_blank"><strong>Uber</strong></a> are available and is a short ride to the wedding venue. There will be valet parking at the brewery for those who prefer to drive themselves.
             </p>
         </section>
 
@@ -100,7 +110,7 @@
             <dl class="faq">
                 <dt>What are the COVID restrictions and safety plans?</dt>
                 <dd>
-                    <p>Please get vaccinated ASAP in order to protect guests and staff who are unable to receive the vaccine. Specific rules are TBD.</p>
+                    <p>If you are able, please get vaccinated ASAP! Specific rules are TBD but unvaccinated guests may be required to wear masks.</p>
                     <p>Make sure to enter your email address when you RSVP so we can send you any last minute updates, if necessary.</p>
                 </dd>
 
@@ -207,6 +217,20 @@
             }),
             new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.055368, -84.656138), {
                 color: calloutColor, title: "Cincinnati Airport", glyphText: "✈️"
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.101019, -84.511364), {
+                color: calloutColor,
+                title: "Fountain Square",
+                glyphText: "🚋",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Fountain Square",
+                    event: "Streetcar Stop",
+                    anchor: "#travel",
+                    url: "https://www.cincinnati-oh.gov/streetcar/",
+                    address: "500 Vine St.\nCincinnati OH",
+                    mapURL: "https://maps.apple.com/?auid=6515216950313648566&ll=39.101019,-84.511364&lsp=9902&q=Fountain%20Square%20Stop&_ext=CicKBAgFEAMKBQgGEOEBCgQIChABCgUIJRCEBwoECCoQAAoFCKMBEAMSJCkrZzmcZIFDQDFpZL71JyhVwDnBWMUAdJhDQEGXm0FmTBlVwA%3D%3D",
+                },
             }),
         ];
         map.showItems(annotations);

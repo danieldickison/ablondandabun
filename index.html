@@ -482,6 +482,13 @@
                 closeButton.addEventListener('click', closeHandler, {once: true});
                 container.appendChild(closeButton);
 
+                this.escapeHandler = event => {
+                    if (event.key === 'Escape') {
+                        this.close(event);
+                    }
+                };
+                window.addEventListener('keypress', this.escapeHandler);
+
                 window.addEventListener('popstate', closeHandler, {once: true});
 
                 history.pushState(page, page, `#${page}`);
@@ -494,6 +501,8 @@
                 if (event.type !== 'popstate') {
                     history.back();
                 }
+
+                window.removeEventListener('keypress', this.escapeHandler);
 
                 if (this.node.parentNode && !this.node.classList.contains('animate-out')) {
                     this.node.classList.add('animate-out');

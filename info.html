@@ -60,10 +60,10 @@
             <div id="map"></div>
         </section>
 
-        <section id="friday">
+<!--         <section id="friday">
             <h2>Friday Night Drinks</h2>
             <p>TBD</p>
-            <!--dl>
+            <dl>
                 <dt>When</dt>
                 <dd>
                     <strong>8–10pm</strong>, Friday, October 8, 2021
@@ -74,13 +74,13 @@
                     <br>
                     <a href="https://maps.apple.com/?address=1142%20Main%20St,%20Cincinnati,%20OH%2045202,%20United%20States&auid=1129965952052892835&ll=39.108993,-84.511304&lsp=9902&q=LOUVINO&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhARCgQIChAAEiYpdyVuq2CNQ0AxaUuk2hkhVcA59fqTB4eOQ0BBN84fLVwgVcBQBA%3D%3D" target="_blank">1142 Main St., Cincinnati OH</a>
                 </dd>
-            </dl-->
-        </section>
+            </dl>
+        </section> -->
 
-        <section id="sunday">
+<!--         <section id="sunday">
             <h2>Sunday Morning Pastries</h2>
             <p>TBD</p>
-            <!--dl>
+            dl>
                 <dt>When</dt>
                 <dd>
                     <strong>10am–noon</strong>, Sunday, October 10, 2021
@@ -91,8 +91,8 @@
                     <br>
                     <a href="https://maps.apple.com/?address=636%20Race%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=5076714277114001385&ll=39.103337,-84.515036&lsp=9902&q=Kinley%20Cincinnati%20Downtown,%20a%20Tribute%20Portfolio%20Hotel&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhALCgQIChAAEiYpuuh1xqOMQ0AxUPDyWVUhVcA5OL6bIsqNQ0BBxgVnsJcgVcBQBA%3D%3D">636 Race St., Cincinnati OH</a>
                 </dd>
-            </dl-->
-        </section>
+            </dl
+        </section> -->
 
         <section id="travel">
             <h2>Travel</h2>
@@ -214,48 +214,48 @@
                     mapURL: "https://maps.apple.com/?address=1910%20Elm%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=6204095633216536386&ll=39.116853,-84.520045&lsp=9902&q=Rhinegeist%20Brewery&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhBoCgQIChAAEiYpQQx03mGOQ0Axtk0HQ6chVcA5v+GZOoiPQ0BB7iwakOkgVcBQBA%3D%3D",
                 },
             }),
-            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.103337, -84.515036), {
-                color: calloutColor,
-                title: "Kinley",
-                glyphText: "🥐",
-                callout: calloutDelegate,
-                data: {
-                    fullTitle: "Kinley Cincinnati Downtown",
-                    event: "Sunday Morning Pastries",
-                    date: "Sunday 10am–noon",
-                    anchor: "#sunday",
-                    url: "https://www.marriott.com/event-reservations/reservation-link.mi?id=1613572433693&key=GRP&app=resvlink",
-                    address: "636 Race St\nCincinnati, OH 45202",
-                    mapURL: "https://maps.apple.com/?address=636%20Race%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=5076714277114001385&ll=39.103337,-84.515036&lsp=9902&q=Kinley%20Cincinnati%20Downtown,%20a%20Tribute%20Portfolio%20Hotel&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhALCgQIChAAEiYpuuh1xqOMQ0AxUPDyWVUhVcA5OL6bIsqNQ0BBxgVnsJcgVcBQBA%3D%3D",
-                },
-            }),
-            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.103082, -84.511972), {
-                color: calloutColor,
-                title: "21c",
-                glyphText: "🛏",
-                callout: calloutDelegate,
-                data: {
-                    fullTitle: "21c Musem Hotel Cincinnati",
-                    url: "http://www.21cmuseumhotels.com/cincinnati/",
-                    address: "609 Walnut St\nCincinnati, OH 45202",
-                    mapURL: "https://maps.apple.com/?address=609%20Walnut%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=781976975545912129&ll=39.103082,-84.511972&lsp=9902&q=21c%20Museum%20Hotel%20Cincinnati%20-%20MGallery&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhALCgQIChAAEiYpnvXfKqCMQ0AxS7PTkCIhVcA5HMsFh8aNQ0BBezJb52QgVcBQBA%3D%3D",
-                },
-            }),
-            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.108993, -84.511304), {
-                color: calloutColor,
-                title: "LouVino",
-                glyphText: "🍸",
-                callout: calloutDelegate,
-                data: {
-                    fullTitle: "LouVino",
-                    event: "Friday Night Drinks",
-                    date: "Friday 8–10pm",
-                    anchor: "#friday",
-                    url: "https://louvino.com/",
-                    address: "1142 Main St.\nCincinnati OH",
-                    mapURL: "https://maps.apple.com/?address=1142%20Main%20St,%20Cincinnati,%20OH%2045202,%20United%20States&auid=1129965952052892835&ll=39.108993,-84.511304&lsp=9902&q=LOUVINO&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhARCgQIChAAEiYpdyVuq2CNQ0AxaUuk2hkhVcA59fqTB4eOQ0BBN84fLVwgVcBQBA%3D%3D",
-                },
-            }),
+            // new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.103337, -84.515036), {
+            //     color: calloutColor,
+            //     title: "Kinley",
+            //     glyphText: "🥐",
+            //     callout: calloutDelegate,
+            //     data: {
+            //         fullTitle: "Kinley Cincinnati Downtown",
+            //         event: "Sunday Morning Pastries",
+            //         date: "Sunday 10am–noon",
+            //         anchor: "#sunday",
+            //         url: "https://www.marriott.com/event-reservations/reservation-link.mi?id=1613572433693&key=GRP&app=resvlink",
+            //         address: "636 Race St\nCincinnati, OH 45202",
+            //         mapURL: "https://maps.apple.com/?address=636%20Race%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=5076714277114001385&ll=39.103337,-84.515036&lsp=9902&q=Kinley%20Cincinnati%20Downtown,%20a%20Tribute%20Portfolio%20Hotel&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhALCgQIChAAEiYpuuh1xqOMQ0AxUPDyWVUhVcA5OL6bIsqNQ0BBxgVnsJcgVcBQBA%3D%3D",
+            //     },
+            // }),
+            // new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.103082, -84.511972), {
+            //     color: calloutColor,
+            //     title: "21c",
+            //     glyphText: "🛏",
+            //     callout: calloutDelegate,
+            //     data: {
+            //         fullTitle: "21c Musem Hotel Cincinnati",
+            //         url: "http://www.21cmuseumhotels.com/cincinnati/",
+            //         address: "609 Walnut St\nCincinnati, OH 45202",
+            //         mapURL: "https://maps.apple.com/?address=609%20Walnut%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=781976975545912129&ll=39.103082,-84.511972&lsp=9902&q=21c%20Museum%20Hotel%20Cincinnati%20-%20MGallery&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhALCgQIChAAEiYpnvXfKqCMQ0AxS7PTkCIhVcA5HMsFh8aNQ0BBezJb52QgVcBQBA%3D%3D",
+            //     },
+            // }),
+            // new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.108993, -84.511304), {
+            //     color: calloutColor,
+            //     title: "LouVino",
+            //     glyphText: "🍸",
+            //     callout: calloutDelegate,
+            //     data: {
+            //         fullTitle: "LouVino",
+            //         event: "Friday Night Drinks",
+            //         date: "Friday 8–10pm",
+            //         anchor: "#friday",
+            //         url: "https://louvino.com/",
+            //         address: "1142 Main St.\nCincinnati OH",
+            //         mapURL: "https://maps.apple.com/?address=1142%20Main%20St,%20Cincinnati,%20OH%2045202,%20United%20States&auid=1129965952052892835&ll=39.108993,-84.511304&lsp=9902&q=LOUVINO&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhARCgQIChAAEiYpdyVuq2CNQ0AxaUuk2hkhVcA59fqTB4eOQ0BBN84fLVwgVcBQBA%3D%3D",
+            //     },
+            // }),
             new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.055368, -84.656138), {
                 color: calloutColor, title: "Cincinnati Airport", glyphText: "✈️"
             }),

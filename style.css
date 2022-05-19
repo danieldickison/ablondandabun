@@ -17,6 +17,9 @@ h1, h2, h3, h4 {
     font-family: var(--title-font), sans-serif;
     font-weight: black;
 }
+.tight {
+    margin: 0;
+}
 
 a {
     color: #103060;
@@ -61,12 +64,12 @@ h2 {
 
 dl {
     display: grid;
-    grid-template-columns: 10% auto;
+    grid-template-columns: 10% 1fr;
     grid-row-gap: 1em;
 
 }
 dl.wide {
-    grid-template-columns: 30% auto;
+    grid-template-columns: 30% 1fr;
 }
 dl > dt {
     grid-column: 1;
@@ -138,6 +141,19 @@ section.gallery > .gallery {
     padding: 5px 20px;
 }
 
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1ex;
+    grid-auto-flow: column;
+}
+.two-columns > .left {
+    grid-column: 1;
+}
+.two-columns > .right {
+    grid-column: 2;
+}
+
 
 /*********** phone ***********/
 
@@ -154,5 +170,12 @@ section.gallery > .gallery {
 
     #map {
         height:  300px;
+    }
+
+    .two-columns {
+        grid-template-columns: 1fr;
+    }
+    .two-columns > .right {
+        grid-column: 1;
     }
 }

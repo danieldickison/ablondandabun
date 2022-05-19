@@ -36,7 +36,6 @@
                     We recommend taking the <a href="https://www.cincinnati-oh.gov/streetcar/" target="_blank"><strong>free streetcar</strong></a>, <a href="https://www.lyft.com" target="_blank"><strong>Lyft</strong></a>, or <a href="https://www.uber.com" target="_blank"><strong>Uber</strong></a> from downtown lodging. Valet parking will be available to those with vehicles.
                 </dd>
             </dl>
-            <div id="map"></div>
         </section>
 
         <section id="thursday">
@@ -100,6 +99,34 @@
         </section>
 
         <section>
+            <h2>While You’re in Cincinnati</h2>
+
+            <div class="two-columns">
+                <h3 class="left tight">Things to do:</h3>
+                <ul class="left">
+                    <li>The Banks and <a href="http://www.mysmaleriverfrontpark.org" target="_blank">Smale Riverfront Park</a></li>
+                    <li><a href="" target="_blank">Findlay Market</a></li>
+                    <li><a href="" target="_blank">Fountain Square</a></li>
+                    <li><a href="" target="_blank">National Underground Railroad Freedom Center</a></li>
+                    <li><a href="" target="_blank">Newport Aquarium</a>
+                    <li><a href="" target="_blank">Hard Rock Casino</a></li></li>
+                </ul>
+
+                <h3 class="right tight">Places to eat:</h3>
+                <ul class="right">
+                    <li><a href="" target="_blank">Bakersfield</a></li>
+                    <li><a href="" target="_blank">Mita’s</a></li>
+                    <li><a href="" target="_blank">Sacred Beast</a></li>
+                    <li><a href="" target="_blank">Goose &amp; Elder</a></li>
+                    <li><a href="" target="_blank">Rosie’s Cocktails &amp; Pies</a></li>
+                    <li><a href="" target="_blank">Taste of Belgium</a></li>
+                </ul>
+            </div>
+
+            <div id="map"></div>
+        </section>
+
+        <section>
             <h2>FAQ</h2>
             <dl class="faq">
                 <dt>Is there a possibility of postponement due to COVID?</dt>
@@ -109,7 +136,7 @@
 
                 <dt>What are the COVID restrictions and safety plans?</dt>
                 <dd>
-                    <p>In order to protect our family, friends, and venue staff who have health issues or are immunocompromised, we’re asking all guests to be fully vaccinated or to have had a negative COVID test result within three days of the event. Specific rules are TBD and will depend on the state of the pandemic. Because this is an indoor event, all guests may be required to wear masks except while eating and drinking.</p>
+                    <p>In order to protect our family, friends, and venue staff, we’re asking all guests to be fully vaccinated or to have had a negative COVID test result within 48 hours of the event. Because this is an indoor event, all guests may be required to wear masks except while eating and drinking.</p>
                     <p>Make sure to enter your email address when you <a target="_blank" href="/#rsvp">RSVP</a> so we can send you any last minute updates, if necessary.</p>
                 </dd>
 
@@ -126,6 +153,11 @@
                 <dt>Do I need an ID to drink?</dt>
                 <dd>
                     <p>Sure do, unless you’re over the age of 80.</p>
+                </dd>
+
+                <dt>Do I need to RSVP for Thursday Drinks and Saturday Pastries?</dt>
+                <dd>
+                    <p>No, come if you can. Please just <a target="_blank" href="/#rsvp">RSVP</a> for the Friday ceremony &amp; reception.</p>
                 </dd>
 
                 <dt>Any other questions?</dt>
@@ -151,7 +183,9 @@
             }
             return a;
         };
-        const calloutColor = '#f88c60';
+        const eventColor = '#f88c60';
+        const thingsColor = '#e090d0';
+        const foodColor = '#f0e030';
         const calloutDelegate = {
             calloutContentForAnnotation: annotation => {
                 const div = document.createElement('div');
@@ -171,24 +205,158 @@
             }
         };
         const annotations = [
-            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.116853, -84.520045), {
-                color: calloutColor,
-                title: "Rhinegeist",
-                subtitle: "1910 Elm St, Cincinnati, OH 45202, USA",
-                glyphText: "🤍",
+            // things to do
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.095296, -84.509469), {
+                color: thingsColor,
+                title: "",
+                glyphText: "🌳",
                 callout: calloutDelegate,
                 data: {
-                    fullTitle: "Rhinegeist Brewery",
-                    event: "Wedding Venue",
-                    date: "Friday 5:30pm",
-                    anchor: "#friday",
-                    url: "https://rhinegeist.com",
-                    address: "1910 Elm St\nCincinnati, OH 45202",
-                    mapURL: "https://maps.apple.com/?address=1910%20Elm%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=6204095633216536386&ll=39.116853,-84.520045&lsp=9902&q=Rhinegeist%20Brewery&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhBoCgQIChAAEiYpQQx03mGOQ0Axtk0HQ6chVcA5v+GZOoiPQ0BB7iwakOkgVcBQBA%3D%3D",
+                    fullTitle: "Smale Riverfront Park",
+                    url: "https://www.cincinnati-oh.gov/streetcar/",
+                    address: "73–75 Mehring Way E\nCincinnati, OH  45202",
+                    mapURL: "https://maps.apple.com/?address=73%E2%80%9375%20Mehring%20Way%20E,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=9743993838076139498&ll=39.095296,-84.509469&lsp=9902&q=Smale%20Riverfront%20Park&_ext=CjgKBQgEEOIBCgQIBRADCgQIBhASCgQIChABCgQIKxABCgQIUhAHCgQIVRANCgQIWRABCgUIpAEQARIkKehgotemi0NAMWZcN0vuIFXAOWY2yDPNjENAQTwy/KYwIFXA",
                 },
             }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.115295, -84.519088), {
+                color: thingsColor,
+                title: "",
+                glyphText: "🍖",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Findlay Market",
+                    url: "https://findlaymarket.org",
+                    address: "1801 Race St\nCincinnati, OH  45202",
+                    mapURL: "https://maps.apple.com/?address=1801%20Race%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=4043789182837430172&ll=39.115295,-84.519088&lsp=9902&q=Findlay%20Market&_ext=CjIKBQgEEOIBCgQIBRADCgQIBhAOCgQIChAACgQIUhABCgQIVRANCgQIWRABCgUIpAEQARImKcpneQ8yjkNAMUyyQMGNIVXAOUg9n2tYj0NAQd78VA/QIFXAUAM%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.101627, -84.512625), {
+                color: thingsColor,
+                title: "",
+                glyphText: "⛲️",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Fountain Square",
+                    url: "https://myfountainsquare.com",
+                    address: "520 Vine St\nCincinnati, OH  45202",
+                    mapURL: "https://maps.apple.com/?address=520%20Vine%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=1457575218320891712&ll=39.101627,-84.512625&lsp=9902&q=Fountain%20Square&_ext=CjMKBQgEEOIBCgQIBRADCgUIBhCGAgoECAoQAAoECFIQBgoECFUQDQoECFkQBgoFCKQBEAESJCnVhQ5w94xDQDEV5Gcj1yBVwDlrn47HDI1DQEGD60CMxiBVwA%3D%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.097566, -84.511241), {
+                color: thingsColor,
+                title: "",
+                glyphText: "🏛",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "National Underground Railroad Freedom Center",
+                    url: "https://freedomcenter.org",
+                    address: "50 E Freedom Way\nCincinnati, OH  45202",
+                    mapURL: "https://maps.apple.com/?address=50%20E%20Freedom%20Way,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=2189949197661938880&ll=39.097566,-84.511241&lsp=9902&q=National%20Underground%20Railroad%20Freedom%20Center&_ext=CjIKBQgEEOIBCgQIBRADCgQIBhAQCgQIChAACgQIUhAMCgQIVRANCgQIWRACCgUIpAEQARIkKYmSNY9ojENAMRGMg0vHIFXAOQ+hpYaRjENAQdkj1AypIFXA",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.094244, -84.498000), {
+                color: thingsColor,
+                title: "",
+                glyphText: "🐠",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Newport Aquarium",
+                    url: "https://newportaquarium.com",
+                    address: "1 Aquarium Way\nNewport, KY 41071",
+                    mapURL: "https://maps.apple.com/?address=1%20Aquarium%20Way,%20Newport,%20KY%2041071,%20United%20States&auid=12473653648408905639&ll=39.094244,-84.498000&lsp=9902&q=Newport%20Aquarium&_ext=CjkKBQgEEOIBCgQIBRADCgUIBhCEAQoECAoQAAoECFIQDAoECFMQAwoECFUQDAoECFkQAQoFCKQBEAESJCl1hB0BiItDQDHPjcisNCBVwDnzWUNdroxDQEEhQjMJdx9VwA%3D%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.108102, -84.506836), {
+                color: thingsColor,
+                title: "",
+                glyphText: "🎰",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Hard Rock Casino",
+                    url: "https://hardrockcasinocincinnati.com",
+                    address: "1000 Broadway St\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=1000%20Broadway%20St,%20Cincinnati,%20OH%2045202,%20United%20States&auid=7841086944927485007&ll=39.108102,-84.506836&lsp=9902&q=Hard%20Rock%20Casino&_ext=CjIKBQgEEOIBCgQIBRADCgQIBhBpCgQIChAACgQIUhANCgQIVRAMCgQIWRABCgUIpAEQARImKe0MU0xAjUNAMfb0tOfSIFXAOWvieKhmjkNAQciz3joVIFXAUAQ%3D",
+                },
+            }),
+
+            // places to eat
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.108685, -84.515129), {
+                color: foodColor,
+                title: "",
+                glyphText: "🌮",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Bakersfield",
+                    url: "https://www.bakersfieldtacos.com",
+                    address: "1213 Vine St\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=1213%20Vine%20St,%20Cincinnati,%20OH%2045202,%20United%20States&auid=15266662285958409072&ll=39.108685,-84.515129&lsp=9902&q=Bakersfield&_ext=CjIKBQgEEOIBCgQIBRADCgQIBhAUCgQIChAACgQIUhABCgQIVRAOCgQIWRABCgUIpAEQARImKYfd0rZXjUNAMcJPPDxWIVXAOQWz+BJ+jkNAQV4G6I6YIFXAUAQ%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.101141, -84.514886), {
+                color: foodColor,
+                title: "",
+                glyphText: "🥘",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Mita’s",
+                    url: "https://mitas.co",
+                    address: "501 Race St\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=501%20Race%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=8459295018241275749&ll=39.101141,-84.514886&lsp=9902&q=Mita's%20-%20Cincinnati&_ext=CjIKBQgEEOIBCgQIBRADCgQIBhAUCgQIChAACgQIUhABCgQIVRAOCgQIWRABCgUIpAEQARImKR76SQFfjENAMXW8dbhSIVXAOZzPb12FjUNAQRXZWxCVIFXAUAQ%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.111440, -84.515870), {
+                color: foodColor,
+                title: "",
+                glyphText: "🍔",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Sacred Beast",
+                    url: "https://sacredbeastdiner.com",
+                    address: "1437 Vine St\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=1437%20Vine%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=8489310095648392599&ll=39.111440,-84.515870&lsp=9902&q=Sacred%20Beast&_ext=CjIKBQgEEOIBCgQIBRADCgQIBhAUCgQIChAACgQIUhABCgQIVRAPCgQIWRACCgUIpAEQARImKTV39LCyjUNAMe7ui7lgIVXAObNMGg3ZjkNAQRbwTQqjIFXAUAQ%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.115586, -84.518112), {
+                color: foodColor,
+                title: "",
+                glyphText: "🍳",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Goose & Elder",
+                    url: "https://gooseandelder.com",
+                    address: "1800 Race St\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=1800%20Race%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=6232843940414974830&ll=39.115586,-84.518112&lsp=9902&q=Goose%20%26%20Elder&_ext=CjIKBQgEEOIBCgQIBRADCgQIBhAUCgQIChAACgQIUhABCgQIVRAOCgQIWRABCgUIpAEQARImKZ68fmg3jkNAMdvndx6IIVXAORySpMRdj0NAQVVnb2zKIFXAUAQ%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.104715, -84.508669), {
+                color: foodColor,
+                title: "",
+                glyphText: "🍕",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Rosie’s Cocktails & Pies",
+                    url: "https://rosiescocktailsandpies.com",
+                    address: "300 Seventh St E\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=300%20Seventh%20St%20E,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=1772835460776280227&ll=39.104715,-84.508669&lsp=9902&q=Rosie's%20Cocktails%20%26%20Pies&_ext=CjIKBQgEEOIBCgQIBRADCgQIBhAUCgQIChAACgQIUhABCgQIVRAPCgQIWRACCgUIpAEQARImKYlIAx/UjENAMXLos93sIFXAOQceKXv6jUNAQSbWIzMvIFXAUAQ%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.108166, -84.514917), {
+                color: foodColor,
+                title: "",
+                glyphText: "🧇",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Taste of Belgium",
+                    url: "https://authenticwaffle.com",
+                    address: "1135 Vine St\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=1135%20Vine%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=17424666080071547738&ll=39.108166,-84.514917&lsp=9902&q=Taste%20of%20Belgium%20-%20Over%20The%20Rhine&_ext=CjIKBQgEEOIBCgQIBRADCgQIBhAUCgQIChAACgQIUhABCgQIVRAOCgQIWRABCgUIpAEQARImKcGvR4hDjUNAMaK29Y1VIVXAOT+FbeRpjkNAQTgNDuGXIFXAUAQ%3D",
+                },
+            }),
+
+            // main events
+            
             new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.103337, -84.515036), {
-                color: calloutColor,
+                color: eventColor,
                 title: "Kinley",
                 glyphText: "🥐",
                 callout: calloutDelegate,
@@ -203,7 +371,7 @@
                 },
             }),
             new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.108993, -84.511304), {
-                color: calloutColor,
+                color: eventColor,
                 title: "LouVino",
                 glyphText: "🍸",
                 callout: calloutDelegate,
@@ -217,11 +385,11 @@
                     mapURL: "https://maps.apple.com/?address=1142%20Main%20St,%20Cincinnati,%20OH%2045202,%20United%20States&auid=1129965952052892835&ll=39.108993,-84.511304&lsp=9902&q=LOUVINO&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhARCgQIChAAEiYpdyVuq2CNQ0AxaUuk2hkhVcA59fqTB4eOQ0BBN84fLVwgVcBQBA%3D%3D",
                 },
             }),
-            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.055368, -84.656138), {
-                color: calloutColor, title: "Cincinnati Airport", glyphText: "✈️"
-            }),
+            // new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.055368, -84.656138), {
+            //     color: eventColor, title: "Cincinnati Airport", glyphText: "✈️"
+            // }),
             new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.104097, -84.512086), {
-                color: calloutColor,
+                color: eventColor,
                 title: "Arnoff Center",
                 glyphText: "🚋",
                 callout: calloutDelegate,
@@ -232,6 +400,22 @@
                     url: "https://www.cincinnati-oh.gov/streetcar/",
                     address: "Walnut & 7th St.\nCincinnati OH",
                     mapURL: "https://maps.apple.com/?address=Cincinnati,%20OH,%20United%20States&auid=11743220117296886428&ll=39.104097,-84.512086&lsp=9902&q=Aronoff%20Center%20Station&_ext=CicKBAgFEAMKBQgGEOEBCgQIChABCgUIJRCEBwoECCoQAQoFCKMBEAMSJClsF+R4T41DQDFH0PMCxyBVwDkhqSrZVo1DQEGDTZ1HxSBVwA%3D%3D",
+                },
+            }),
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.116853, -84.520045), {
+                color: eventColor,
+                title: "Rhinegeist",
+                subtitle: "1910 Elm St, Cincinnati, OH 45202, USA",
+                glyphText: "🤍",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Rhinegeist Brewery",
+                    event: "Wedding Venue",
+                    date: "Friday 5:30pm",
+                    anchor: "#friday",
+                    url: "https://rhinegeist.com",
+                    address: "1910 Elm St\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=1910%20Elm%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=6204095633216536386&ll=39.116853,-84.520045&lsp=9902&q=Rhinegeist%20Brewery&_ext=ChkKBQgEEOIBCgQIBRADCgQIBhBoCgQIChAAEiYpQQx03mGOQ0Axtk0HQ6chVcA5v+GZOoiPQ0BB7iwakOkgVcBQBA%3D%3D",
                 },
             }),
         ];

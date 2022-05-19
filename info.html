@@ -114,6 +114,7 @@
 
                 <h3 class="right tight">Downey-approved places to eat:</h3>
                 <ul class="right">
+                    <li><a href="https://locations.skylinechili.com/skyline-chili-4828bd593334" target="_blank">Skyline Chili</a></li>
                     <li><a href="https://www.bakersfieldtacos.com" target="_blank">Bakersfield</a></li>
                     <li><a href="https://mitas.co" target="_blank">Mita’s</a></li>
                     <li><a href="https://sacredbeastdiner.com" target="_blank">Sacred Beast</a></li>
@@ -287,6 +288,19 @@
             }),
 
             // places to eat
+            new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.103447, -84.513681), {
+                color: foodColor,
+                title: "Skyline Chili",
+                titleVisibility: mapkit.FeatureVisibility.Hidden,
+                glyphText: "🌭",
+                callout: calloutDelegate,
+                data: {
+                    fullTitle: "Skyline Chili",
+                    url: "https://locations.skylinechili.com/skyline-chili-4828bd593334",
+                    address: "643 Vine St\nCincinnati, OH 45202",
+                    mapURL: "https://maps.apple.com/?address=643%20Vine%20St,%20Cincinnati,%20OH%20%2045202,%20United%20States&auid=8072118606389546522&ll=39.103447,-84.513681&lsp=9902&q=Skyline%20Chili&_ext=CjMKBQgEEOIBCgQIBRADCgUIBhDRAQoECAoQAAoECFIQAQoECFUQEAoECFkQAwoFCKQBEAESJikJ3SVirIxDQDEgQLMBQCFVwDmHsku+0o1DQEGgA/lXgiBVwFAE",
+                },
+            }),
             new mapkit.MarkerAnnotation(new mapkit.Coordinate(39.108685, -84.515129), {
                 color: foodColor,
                 title: "Bakersfield",
